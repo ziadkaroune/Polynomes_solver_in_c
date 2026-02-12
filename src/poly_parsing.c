@@ -1,7 +1,5 @@
 #include "../main.h"
 
-
- 
 static void *store_and_calculate_coeff(char *res , t_poly *coeffi){
     char *ptr = res;
     bool isNegatif ;
@@ -32,19 +30,21 @@ static void *store_and_calculate_coeff(char *res , t_poly *coeffi){
         while (*temp == ' ' || *temp == '*')
                  temp++;
        
-        if (*temp == 'X') {
+             if (*temp == 'X') {
             
-                if( *(temp + 1)  == '^' ){
-                    if( *(temp + 2) == '3')    coeffi->deg_three += val;
-                    else if( *(temp + 2) == '2')    coeffi->deg_two += val;
-                    else if( *(temp + 2) == '0')    coeffi->deg_zero += val;
-                    ptr = temp + 3;
-                }
-                else{
-                    coeffi->deg_one += val;
-                    ptr = temp + 1;  
-                    if (*ptr == '^') ptr += 2; 
-                }
+                        if( *(temp + 1)  == '^' && *(temp + 2) == '2'){
+                            coeffi->deg_two += val;
+                            ptr = temp + 3;
+                        }
+                        else if( *(temp + 1)  == '^' && *(temp + 2) == '0'){
+                            coeffi->deg_zero += val;
+                            ptr = temp + 3;
+                        }
+                        else{
+                            coeffi->deg_one += val;
+                            ptr = temp + 1;  
+                            if (*ptr == '^') ptr += 2; 
+                        }
         }
          else 
                 coeffi->deg_zero += val;
