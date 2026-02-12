@@ -1,51 +1,15 @@
 #include "../main.h"
 
-
-
-
-///////////////////////////////////////////
-///////Validate polynome expression //////////////
-
-static bool verify_equal(char *expression){
-    int oneEqual = 0;
-    for(int i = 0 ; expression[i] != '\0' ; i++){
-        if(expression[i] == '=')
-                oneEqual++;
-    }
-    if(oneEqual == 1 )
-             return true;
-    return false;
-}
-bool isPolynome(char *expression){
-    if(!verify_equal(expression))
-            return false;
-    for(int i = 0 ; expression[i] != '\0' ; i++){
-        char c = expression[i];
-        if(!((c >= '0' && c <= '9') ||
-              c == '=' || c == '*' ||
-              c == '.' || c == ' ' ||
-              c == '-' ||  c == '+' ||
-              c == 'X' ||  c == '^' 
-              )){
-            return false;  // invalid
-        }   
-    }
-    return true;
-}
-///////////////////////////////////////////
-
-
-// poly degree 0 
- void zerodegreepoly(t_poly *coeffi){
+// Equations degree 0 
+static void zero_degree_eqtion(t_poly *coeffi){
      if (coeffi->deg_zero == 0)
         printf("All real numbers are solutions\n");
     else
         printf("No solution (contradiction: %.2f = 0)\n", coeffi->deg_zero);
 }
  
-
-/// plynome degree 1
-static void premierdegreepoly(t_poly *coeffi){
+///  Equations degree 1 
+static void premier_degree_equation(t_poly *coeffi){
      double a =   coeffi->deg_one ;
      double z =   coeffi->deg_zero;
      double result =  0 ;
@@ -55,23 +19,19 @@ static void premierdegreepoly(t_poly *coeffi){
     else if(a == 0 && z == 0)
          printf("- has infinite solutions \n");
     else{
-           result = -z/a;
-        printf("- solution :  %.2f \n" ,  result);
+        result = -z/a;
+        printf("- solution : \n %.2f \n" ,  result);
     }
-       
- 
 }
 
-  
-
 /// plynome degree 2
-static void caluclate_determinant(t_poly *coeffi){
+static void deuxieme_degree_poly(t_poly *coeffi){
 
       double a =   coeffi->deg_two;
       double b =   coeffi->deg_one ;
       double c =   coeffi->deg_zero;
       
-      double determinant = (b * b) - 4 * a * c;    // determinant
+      double determinant = (b * b) - 4 * a * c;
       
       if(a == 0) 
                 printf("a != 0 pour calculer caulculer les solutions");
@@ -100,15 +60,15 @@ static void caluclate_determinant(t_poly *coeffi){
 }
 
 // calculate Determinant
-void  Check_Determinant(t_poly *coeffi , int poly_degree){
+void  equation_solver(t_poly *coeffi , int poly_degree){
     if (poly_degree == -1) // 0 = 0 
         printf("All real numbers are solutions\n");
     else if(poly_degree == 2)
-        caluclate_determinant(coeffi);
+        deuxieme_degree_poly(coeffi);
     else if(poly_degree == 1)
-        premierdegreepoly(coeffi);
+        premier_degree_equation(coeffi);
     else if (poly_degree == 0)
-        zerodegreepoly(coeffi);
+        zero_degree_eqtion(coeffi);
     else{
          printf("The polynomial degree is strictly greater than 2, I can't solve");
          return ;
