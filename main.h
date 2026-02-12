@@ -24,6 +24,6 @@ double deg_three;
 //utils
 int find_poly_degree(t_poly *coeffi);
 //logic
-void Check_Determinant(t_poly *coeffi , int poly_degree);
+void equation_solver(t_poly *coeffi , int poly_degree);
 bool isPolynome(char *expression);
 char	*recycle_Polynome(char *eqt , t_poly *coeffi);

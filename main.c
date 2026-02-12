@@ -15,10 +15,6 @@ int main(int ac , char *av[])
 
    int  poly_degree  = find_poly_degree(&coeffi);
    printf("Polynomial degree : %d\n" , poly_degree);
-   
-   Check_Determinant(&coeffi , poly_degree);
-   
-    
-
+   equation_solver(&coeffi , poly_degree);
     return 0;
 }
