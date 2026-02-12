@@ -1,5 +1,5 @@
 NAME	=	computor
-SRCS	=  	main.c src/ft_utils.c src/poly_helpers.c src/poly_logic.c src/poly_parsing.c
+SRCS	=  	main.c  src/poly_helpers.c src/poly_logic.c src/poly_parsing.c
 OBJ_DIR	=	obj
 OBJS	= 	$(addprefix $(OBJ_DIR)/,$(notdir $(SRCS:.c=.o)))
 CFLAGS	=   -Wall -Wextra -Werror
@@ -10,7 +10,7 @@ RMDIR	= 	rmdir
 all : 	$(NAME)
 
 $(NAME): $(OBJS)
-	 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME) -lm
 
 $(OBJ_DIR)/main.o: main.c
 	@mkdir -p $(OBJ_DIR)
