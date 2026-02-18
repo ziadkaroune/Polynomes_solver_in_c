@@ -10,7 +10,8 @@ RMDIR	= 	rmdir
 all : 	$(NAME)
 
 $(NAME): $(OBJS)
-	 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME) -lm
+	 	@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+
 
 $(OBJ_DIR)/main.o: main.c
 	@mkdir -p $(OBJ_DIR)
@@ -22,11 +23,12 @@ $(OBJ_DIR)/%.o: src/%.c
 	
 clean:
 	@$(RM) $(OBJS)
-	@echo "cleaaaaaan"
+	@echo "clean , Done !"
 
-fclean:	clean
-	@$(RM) $(NAME)
+fclean:
+	@$(RM) $(OBJS) $(NAME)
 	@$(RM) $(OBJ_DIR)
+	@echo " Done !"
 	
 
 re: fclean all
