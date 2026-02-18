@@ -27,7 +27,6 @@ int main(int ac , char *av[])
         printf("invalid equation");
         return -1;
     }
-
     // intermediate form
      char *recycle_form = recycle_Polynome(equation , &coeffi);
       eqt_degree  = find_eqaution_degree(&coeffi);
@@ -37,20 +36,21 @@ int main(int ac , char *av[])
             printf("Reduced form : %s\n" , recycle_form);
 
 
-   if(coeffi.heigher_degree){
-        printf("The polynomial degree is strictly greater than 2, I can't solve\n"); 
-        return 0;
-   }
-    
-   char *reduced_form = reducedForm(&coeffi , 300);
-    if(eqt_degree > 0)
-        printf("%s \n" , reduced_form);
+   if(coeffi.heigher_degree)
+            printf("The polynomial degree is strictly greater than 2, I can't solve\n"); 
+   else {
+            char *reduced_form = reducedForm(&coeffi , 300);
 
-   if(eqt_degree > 0)
-        printf("Polynomial degree : %d\n" , eqt_degree);
-   equation_solver(&coeffi , eqt_degree);
+            if(eqt_degree > 0)
+                    printf("%s \n" , reduced_form);
+
+            if(eqt_degree > 0)
+                    printf("Polynomial degree : %d\n" , eqt_degree);
+
+            equation_solver(&coeffi , eqt_degree);
+            free(reduced_form);
+    }
 
    free(recycle_form);
-   free(reduced_form);
    return 0;
 }
