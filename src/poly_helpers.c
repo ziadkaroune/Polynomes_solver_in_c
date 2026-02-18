@@ -28,9 +28,8 @@ bool isPolynome(char *expression){
     return true;
 }
 
-/// problem with degree 2 +
 
-int find_poly_degree(t_poly *coeffi){
+int find_eqaution_degree(t_poly *coeffi){
     int degree;
     if (coeffi->deg_three != 0)
         degree = 3;
@@ -44,3 +43,31 @@ int find_poly_degree(t_poly *coeffi){
         degree = -1;
     return degree; 
 } 
+
+double ft_fabs(double n) {
+    return (n < 0 ? -n : n);
+}
+
+double ft_sqrt(double n) {
+    if (n < 0) return -1; 
+    if (n == 0 || n == 1) return n;
+
+    double precision = 0.000001; 
+    double root = n;
+    double temp = 0;
+
+    while (ft_fabs(root - temp) > precision) {
+        temp = root;
+        root = (n / temp + temp) / 2;
+    }
+    return root;
+}
+
+int ft_atoi(const char *str) {
+    int res = 0;
+    while (*str >= '0' && *str <= '9') {
+        res = res * 10 + (*str - '0');
+        str++;
+    }
+    return res;
+}
